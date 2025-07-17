@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #dvd-oval {
+      position: absolute;
+      width: 100px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #00ffcc, #006666);
+      box-shadow: 0 0 20px #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div id="dvd-oval"></div>
+
+  <script>
+    const oval = document.getElementById('dvd-oval');
+    let x = 100, y = 100;
+    let dx = 2, dy = 2;
+
+    function animate() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const ow = oval.offsetWidth;
+      const oh = oval.offsetHeight;
+
+      if (x + dx < 0 || x + dx + ow > w) dx *= -1;
+      if (y + dy < 0 || y + dy + oh > h) dy *= -1;
+
+      x += dx;
+      y += dy;
+
+      oval.style.transform = `translate(${x}px, ${y}px)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
